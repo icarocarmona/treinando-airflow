@@ -3,6 +3,8 @@ export AIRFLOW_HOME=$(pwd)/airflow
 
 airflow initdb
 
+airflow db check
+
 airflow webserver
 
 airflow scheduler

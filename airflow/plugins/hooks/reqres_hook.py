@@ -5,14 +5,14 @@ import json
 
 class ReqResHook(HttpHook):
 
-    def __init__(self, conn_id=None, page=None):
-        self.page = page
+    def __init__(self, conn_id=None, page=None, **kwargs):
         self.conn_id = conn_id or "reqres_default"
-        super().__init__(http_conn_id=self.conn_id)
+        self.log.info(f"conn_id: {self.conn_id}")
+        super().__init__(http_conn_id=self.conn_id, **kwargs)
+        self.page = page
 
     def create_url(self):
-        url = "https://reqres.in/api/users?page={}".format(
-            self.page)
+        url = f"{self.base_url}/api/users?page={self.page}"
         return url
 
     def connect_to_endpoint(self, url, session):
@@ -34,5 +34,6 @@ class ReqResHook(HttpHook):
 
 
 if __name__ == "__main__":
-    for pg in ReqResHook("ReqResHook").run():
-        print(json.dumps(pg, indent=4, sort_keys=True))
+    hook = ReqResHook(conn_id="reqres_default", page=1)
+    data = hook.run()
+    print(json.dumps(data, indent=4, sort_keys=True))
