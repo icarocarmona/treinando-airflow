@@ -1,10 +1,8 @@
 from airflow.hooks.http_hook import HttpHook
 import requests
-import json
 
 
-class ReqResHook(HttpHook):
-
+class MyCustomHttpHook(HttpHook):
     def __init__(self, conn_id=None, page=None, **kwargs):
         self.conn_id = conn_id or "reqres_default"
         self.log.info(f"conn_id: {self.conn_id}")
@@ -31,9 +29,3 @@ class ReqResHook(HttpHook):
         data = self.connect_to_endpoint(url, session)
         print(f"data:{data}")
         return data
-
-
-if __name__ == "__main__":
-    hook = ReqResHook(conn_id="reqres_default", page=1)
-    data = hook.run()
-    print(json.dumps(data, indent=4, sort_keys=True))

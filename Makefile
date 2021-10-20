@@ -24,3 +24,17 @@ docker-tag:
 	
 docker-push:
 	docker push treinamento-airflow:latest
+
+airflow/start:
+	@airflow standalone
+
+airflow/clean:
+	@rm -rf ~/airflow/dags/*
+	@rm -rf ~/airflow/plugins/*
+
+deploy/plugins:	
+	@cp -r ./airflow/plugins/* ~/airflow/plugins
+
+deploy/dags:
+	@cp -r ./airflow/dags/* ~/airflow/dags	
+

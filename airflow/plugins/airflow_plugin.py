@@ -1,7 +1,7 @@
 from airflow.plugins_manager import AirflowPlugin
-from operators.reqres_operator import ReqResOperator
+from operators.my_custom_operator import MyCustomOperator
 
 
 class ReqResAirflowPlugin(AirflowPlugin):
-    name = "reqres"
-    operators = [ReqResOperator]
+    name = "mycustomoperator"
+    operators = [MyCustomOperator]
