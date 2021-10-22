@@ -11,6 +11,9 @@ virtualenv:
 	@echo "VirtualENV Setup Complete. Now run: source env/bin/activate"
 	@echo
 
+install:
+	sh scripts/install.sh
+
 docker: clean
 	docker build -t treinamento-airflow:latest .
 

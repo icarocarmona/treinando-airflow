@@ -1,22 +1,40 @@
+Este projeto tem como objetivo treinar o conhecimento com Airflow.
 
-export AIRFLOW_HOME=$(pwd)/airflow
 
-airflow initdb
+## Requisitos
+- Linux (testado apenas em Ubuntu);
+## Configurando o projeto
 
-airflow db check
-
-airflow webserver
-
-airflow scheduler
-
-export AIRFLOW__CORE__KILLED_TASK_CLEANUP_TIME=604800
-
-## Build
+Crie o ambiente virtual do python, ao final da criação do ambiente será solicitado
+ a execução do seguinte comando `source env/bin/activate`.
 
 ```sh
-docker-compose up --build
+make virtualenv
 ```
 
+# Install
+
+## Local
+Nessa instalação os arquivos do Airflow ficarão no diretório `~/airflow`.
+Após a instalação o script cria as pasta *dags* e *plugins*.
+
+```sh
+make install
+```
+## Docker
+TBD
+
+
+# Start
+
+```sh
+make airflow/start
+```
+Acesse o airflow em localhost:8080 em seu navegador e use admin como usuário e a senha estará em seu console.
 
 ## UI Links
-- Airflow: [localhost:8080]()
+- Airflow: [localhost:8080](localhost:8080)
+
+## Referências
+
+[Running Airflow locally](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html)
