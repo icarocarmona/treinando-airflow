@@ -4,11 +4,18 @@
 clean:
 	find . -name '*.py[co]' -delete
 	
-virtualenv:
-	virtualenv --always-copy --prompt '|> VirtualENV <| ' env
+virtualenv/linux:
+	virtualenv --always-copy --prompt '|> VirtualENV <| ' .venv
 	env/bin/pip install -r src/requirements.txt
 	@echo
-	@echo "VirtualENV Setup Complete. Now run: source env/bin/activate"
+	@echo "VirtualENV Setup Complete. Now run: source .venv/bin/activate"
+	@echo
+
+virtualenv/mac:
+	python3 -m venv .venv
+	pip install -r src/requirements.txt
+	@echo
+	@echo "VirtualENV Setup Complete. Now run: source .venv/bin/activate"
 	@echo
 
 install:
@@ -29,7 +36,7 @@ docker-push:
 	docker push treinamento-airflow:latest
 
 airflow/start:
-	@airflow standalone
+	@.venv/bin/airflow standalone
 
 airflow/clean:
 	@rm -rf ~/airflow/dags/*
