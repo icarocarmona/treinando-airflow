@@ -23,16 +23,37 @@ Após a instalação o script cria as pasta *dags* e *plugins*.
 ```sh
 make install
 ```
-## Docker
-TBD
-
 
 # Start
 
 ```sh
 make airflow/start
 ```
-Acesse o airflow em localhost:8080 em seu navegador e use admin como usuário e a senha estará em seu console.
+
+## Docker
+
+### Setting the right Airflow user
+
+```sh
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+```
+### Initialize the database
+
+```sh
+docker-compose up airflow-init
+```
+### Running Airflow
+
+```sh
+docker-compose up
+```
+
+
+## Antes de começar
+
+Você precisa cadastrar a connection `reqres_default` no airflow para que o `MyCustomHttpHook` funcione corretamente, por isso você deve criar uma connection com os seguintes parâmetros:
+- Conn Id: `reqres_default`;
+- Host: `https://reqres.in`;
 
 ## UI Links
 - Airflow: [localhost:8080](localhost:8080)
@@ -47,3 +68,6 @@ airflow users  create --role Admin --username admin --email admin --firstname ad
 ## Referências
 
 [Running Airflow locally](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html)
+
+[Running Airflow in Docker](https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html)
+
