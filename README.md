@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/icarocarmona/treinando-airflow/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/icarocarmona/treinando-airflow/actions/workflows/codeql-analysis.yml)
+
 Este projeto tem como objetivo treinar o conhecimento com Airflow.
 
 
